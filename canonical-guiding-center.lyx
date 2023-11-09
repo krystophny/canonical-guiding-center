@@ -244,9 +244,13 @@ where
 
 Hamiltonian
 \begin_inset Formula 
-\begin{equation}
-H(\zset)=\frac{mv_{\parallel}^{\,2}}{2}+J_{\perp}\omega_{c}(\xset)
-\end{equation}
+\begin{align}
+H(\zset) & =\frac{mv_{\parallel}^{\,2}}{2}+J_{\perp}\omega_{c}(\xset)\\
+\frac{\partial H(\zset)}{\partial x^{k}} & =J_{\perp}\frac{\partial\omega_{c}(\xset)}{\partial x^{k}}\\
+\frac{\partial H(\zset)}{\partial v_{\parallel}} & =mv_{\parallel}\\
+\frac{\partial H(\zset)}{\partial\phi} & =0\\
+\frac{\partial H(\zset)}{\partial J_{\perp}} & =\omega_{c}(\xset)
+\end{align}
 
 \end_inset
 
@@ -266,7 +270,54 @@ So
 
 \end_inset
 
+We have
+\begin_inset Formula 
+\begin{align*}
+\d\rho_{c}(\xset,J_{\perp}) & =\d\sqrt{\frac{2J_{\perp}}{m\omega_{c}(\xset)}}=-\frac{\rho_{c}}{2\omega_{c}(\xset)}\frac{\partial\omega_{c}(\xset)}{\partial x^{k}}\d x^{k}+\frac{1}{2J_{\perp}}\d J_{\perp}\\
+\d\hat{\vrho}(\xset,\phi) & =(\cos\phi\mathbf{e}_{1}(\xset)+\sin\phi\mathbf{e}_{2}(\xset))\d\phi\\
+ & +\left(\sin\phi\frac{\partial\mathbf{e}_{1}(\xset)}{\partial x^{k}}-\cos\phi\frac{\partial\mathbf{e}_{2}(\xset)}{\partial x^{k}}\right)\d x^{k}
+\end{align*}
 
+\end_inset
+
+Time stepping
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+q^{i}(t+h) & =q^{i}(t)+\dot{q}^{i}((q^{i}(t)+q^{i}(t+h))/2,(p_{j}(t)+p_{j}(t+h))/2)\label{eq:qdot-1}\\
+p_{j}(t+h) & =p_{j}(t)+\dot{p}_{j}((q^{i}(t)+q^{i}(t+h))/2,(p_{j}(t)+p_{j}(t+h))/2)\label{eq:pdot-1}
+\end{align}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align}
+q^{i}(t+h) & =x^{i}+\rho^{i}(\xset,\phi,J_{\perp})\\
+p_{j}(t+h) & =mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})).
+\end{align}
+
+\end_inset
+
+Or reduced
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+x^{i}+\rho^{i}(\xset,\phi,J_{\perp}) & =q^{i}(t)+\dot{q}^{i}((q^{i}(t)+x^{i}+\rho^{i}(\xset,\phi,J_{\perp}))/2,(p_{j}(t)+mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})))/2)\label{eq:qdot-1-1}\\
+mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})) & =p_{j}(t)+\dot{p}_{j}((q^{i}(t)+x^{i}+\rho^{i}(\xset,\phi,J_{\perp}))/2,(p_{j}(t)+mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})))/2)\label{eq:pdot-1-1}
+\end{align}
+
+\end_inset
+
+Solve these 6 equations in 
+\begin_inset Formula $(\xset,v_{\parallel},\phi,J_{\perp})$
+\end_inset
+
+ implicitly in every time-step.
 \end_layout
 
 \end_body

@@ -35,3 +35,12 @@ qvec = reduce(hcat, q.(eachrow(zvec)))
 using Plots
 
 plot(qvec[1,:], qvec[2,:], aspect_ratio=:equal, legend=false)
+
+
+dHdz(z) = [p(z)/m, -q(z)/m]
+
+#function F(z, zold)
+#    F = zeros(12)
+#    F[1:3] = q(z) - qold
+#    F[4:6] = p(z) - pnew
+#end
