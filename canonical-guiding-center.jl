@@ -14,17 +14,24 @@ Bmod(x) = sqrt(B(x)'*B(x))
 h(x) = B(x)/Bmod(x)
 omc(x) = qe*Bmod(x)/(m*c)  # Cyclotron frequency
 
-e1(x) = [1,0,0]
-e2(x) = [0,1,0]
+e1(x) = [1.0, 0.0, 0.0]
+e2(x) = [0.0, 1.0, 0.0]
 
 rholen(z) = sqrt(2*z[6]/(m*omc(z[1:3])))
-rhovec(z) = sin(z[4])*e1(z[1:3]) + cos(z[4])*e2(z[1:3])
-rho(z) = rholen(z).*rhovec(z)
+rhovec(z) = sin(z[5])*e1(z[1:3]) + cos(z[5])*e2(z[1:3])
+rho(z) = rholen(z)*rhovec(z)
 
-q(z) = z[1:3] + rho(z)
+q(z) = z[1:3] .+ rho(z)
 p(z) = m*z[4]*h(z[1:3]) + qe/c*A(q(z))
 
-z = [0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+phis = 0:2π/20:2π
+zs = zeros(length(phis), 6)
+zs[:,5] = phis
+zs[:,6] .= 1.0
 
-println(q(z))
-println(p(z))
+qvec = reduce(hcat, q.(eachrow(zvec)))
+
+## Plot
+using Plots
+
+plot(qvec[1,:], qvec[2,:], aspect_ratio=:equal, legend=false)
