@@ -10,6 +10,9 @@ c = 1.0
 def Bmod(x):
     return B0
 
+def dBmod(x):
+    return 0.0
+
 def A(x):
     return B0*np.array([-0.5 * x[1], 0.5 * x[0], 0])
 
@@ -22,8 +25,17 @@ def dA(x):
 def B(x):
     return np.array([0.0, 0.0, B0])
 
+def dB(x):
+    return np.zeros((3,3))
+
 def e1(x):
     return np.array([0.0, 1.0, 0.0])
 
 def e2(x):
     return np.array([1.0, 0.0, 0.0])
+
+def de1(x):
+    return np.zeros((3,3))
+
+def de2(x):
+    return np.zeros((3,3))

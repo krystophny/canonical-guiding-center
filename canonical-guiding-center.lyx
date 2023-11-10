@@ -227,7 +227,7 @@ Particle canonical coordinates in terms of guiding-center coordinates
 \begin_inset Formula 
 \begin{align}
 q^{i}(\zset) & =x^{i}+\rho^{i}(\xset,\phi,J_{\perp}),\\
-p_{j}(\zset) & =mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})).
+p_{j}(\zset) & =mv_{\parallel}h_{j}(\xset)+m\mathbf{v}_{\perp}(\xset,\phi,J_{\perp})+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})).
 \end{align}
 
 \end_inset
@@ -245,11 +245,7 @@ where
 Hamiltonian
 \begin_inset Formula 
 \begin{align}
-H(\zset) & =\frac{mv_{\parallel}^{\,2}}{2}+J_{\perp}\omega_{c}(\xset)\\
-\frac{\partial H(\zset)}{\partial x^{k}} & =J_{\perp}\frac{\partial\omega_{c}(\xset)}{\partial x^{k}}\\
-\frac{\partial H(\zset)}{\partial v_{\parallel}} & =mv_{\parallel}\\
-\frac{\partial H(\zset)}{\partial\phi} & =0\\
-\frac{\partial H(\zset)}{\partial J_{\perp}} & =\omega_{c}(\xset)
+H(\zset) & =\frac{mv_{\parallel}^{\,2}}{2}+\frac{mv_{\perp}^{\,2}}{2}
 \end{align}
 
 \end_inset
@@ -258,8 +254,8 @@ Easier
 \begin_inset Formula 
 \begin{align}
 \d q^{i} & =\delta_{j}^{i}\d x^{j}+\d\rho^{i},\\
-\d p_{j} & =mh_{j}(\xset)\d v_{\parallel}+mv_{\parallel}\d h_{j}(\xset)+\d A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})).\\
-\d H & =mv_{\parallel}\d v_{\parallel}+\omega_{c}(\xset)\d J_{\perp}+J_{\perp}\d\omega_{c}
+\d p_{j} & =mh_{j}(\xset)\d v_{\parallel}+mv_{\parallel}\d h_{j}(\xset)+m\d\mathbf{v}_{\perp}+\d A_{j}(\xset+\vrho(\xset,\phi,v_{\perp})).\\
+\d H & =mv_{\parallel}\d v_{\parallel}+mv_{\perp}\d v_{\perp}
 \end{align}
 
 \end_inset
@@ -267,15 +263,10 @@ Easier
 So
 \begin_inset Formula 
 \begin{align*}
-\frac{\partial q^{i}(\zset)}{\partial x^{k}} & =\delta_{k}^{i}+\frac{\partial\rho^{i}(\xset,\phi,J_{\perp})}{\partial x^{k}}=\delta_{k}^{i}+\frac{\partial\rho^{i}(\xset,J_{\perp})}{\partial x^{k}}\\
-\frac{\partial q^{i}(\zset)}{\partial v_{\parallel}} & =0\\
-\frac{\partial q^{i}(\zset)}{\partial\phi} & =\rho_{c}(\xset,J_{\perp})\frac{\partial\hat{\rho}^{i}(\xset,\phi)}{\partial\phi}\\
-\frac{\partial q^{i}(\zset)}{\partial J_{\perp}} & =\frac{\partial\rho_{c}(\xset,J_{\perp})}{\partial J_{\perp}}\hat{\rho}^{i}(\xset,\phi)\\
-\\
-\frac{\partial p_{j}(\zset)}{\partial x^{k}} & =mv_{\parallel}\frac{\partial h_{j}(\xset)}{\partial x^{k}}+\frac{\partial A_{j}(\xset+\vrho(\xset,\phi,J_{\perp}))}{\partial x^{k}}\left(1+\frac{\partial\rho_{c}(\xset,J_{\perp})}{\partial x^{k}}\hat{\rho}^{j}(\xset,\phi)+\rho_{c}(\xset,J_{\perp})\frac{\partial\hat{\rho}^{j}(\xset,\phi)}{\partial x^{k}}\right),\\
+\frac{\partial p_{j}(\zset)}{\partial x^{k}} & =mv_{\parallel}\frac{\partial h_{j}(\xset)}{\partial x^{k}}+\frac{\partial A_{j}(\xset+\vrho(\xset,\phi,J_{\perp}))}{\partial x^{i}}\left(\delta_{k}^{i}+\frac{\partial\rho^{i}(\xset,\phi,v_{\perp})}{\partial x^{k}}\right),\\
 \frac{\partial p_{j}(\zset)}{\partial v_{\parallel}} & =mh_{j}(\xset),\\
-\frac{\partial p_{j}(\zset)}{\partial\phi} & =\frac{\partial A_{j}(\xset+\vrho(\xset,\phi,J_{\perp}))}{\partial x^{k}}\rho_{c}(\xset,J_{\perp})\frac{\partial\hat{\rho}^{j}(\xset,\phi)}{\partial\phi}\\
-\frac{\partial p_{j}(\zset)}{\partial J_{\perp}} & =\frac{\partial A_{j}(\xset+\vrho(\xset,\phi,J_{\perp}))}{\partial x^{k}}\frac{\partial\rho_{c}(\xset,J_{\perp})}{\partial J_{\perp}}\hat{\rho}^{j}(\xset,\phi)
+\frac{\partial p_{j}(\zset)}{\partial\phi} & =\frac{\partial A_{j}(\xset+\vrho(\xset,\phi,J_{\perp}))}{\partial x^{i}}\frac{\partial\rho^{i}(\xset,\phi,v_{\perp})}{\partial\phi}\\
+\frac{\partial p_{j}(\zset)}{\partial v_{\perp}} & =\frac{\partial A_{j}(\xset+\vrho(\xset,\phi,J_{\perp}))}{\partial x^{i}}\frac{\partial\rho^{i}(\xset,\phi,v_{\perp})}{\partial v_{\perp}}
 \end{align*}
 
 \end_inset
@@ -283,67 +274,13 @@ So
 We have
 \begin_inset Formula 
 \begin{align*}
-\d\rho_{c}(\xset,J_{\perp}) & =\d\sqrt{\frac{2J_{\perp}}{m\omega_{c}(\xset)}}=-\frac{\rho_{c}}{2\omega_{c}(\xset)}\frac{\partial\omega_{c}(\xset)}{\partial x^{k}}\d x^{k}+\frac{1}{2J_{\perp}}\d J_{\perp}\\
+\d\rho_{c}(\xset,v_{\perp}) & =\d\frac{v_{\perp}}{\omega_{c}(\xset)}=\frac{\d v_{\perp}}{\omega_{c}(\xset)}-\frac{v_{\perp}}{\omega_{c}^{\,2}(\xset)}\d\omega_{c}\\
+ & =\d\sqrt{\frac{2J_{\perp}}{m\omega_{c}(\xset)}}=-\frac{\rho_{c}}{2\omega_{c}(\xset)}\d\omega_{c}+\frac{1}{2J_{\perp}}\d J_{\perp}\\
+\\
 \d\hat{\vrho}(\xset,\phi) & =\left(\sin\phi\frac{\partial\mathbf{e}_{1}(\xset)}{\partial x^{k}}-\cos\phi\frac{\partial\mathbf{e}_{2}(\xset)}{\partial x^{k}}\right)\d x^{k}\\
- & +(\cos\phi\mathbf{e}_{1}(\xset)+\sin\phi\mathbf{e}_{2}(\xset))\d\phi
+ & +(\cos\phi\mathbf{e}_{1}(\xset)+\sin\phi\mathbf{e}_{2}(\xset))\d\phi\\
+\d\rho^{i} & =\rho_{c}(\xset,v_{\perp})\d\hat{\rho}^{i}(\xset,\phi)+\hat{\rho}^{i}(\xset,\phi)\d\rho_{c}(\xset,v_{\perp})
 \end{align*}
-
-\end_inset
-
-Time stepping
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{align}
-q^{i}(t+h) & =q^{i}(t)+\dot{q}^{i}((q^{i}(t)+q^{i}(t+h))/2,(p_{j}(t)+p_{j}(t+h))/2)\label{eq:qdot-1}\\
-p_{j}(t+h) & =p_{j}(t)+\dot{p}_{j}((q^{i}(t)+q^{i}(t+h))/2,(p_{j}(t)+p_{j}(t+h))/2)\label{eq:pdot-1}
-\end{align}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{align}
-q^{i}(t+h) & =x^{i}+\rho^{i}(\xset,\phi,J_{\perp})\\
-p_{j}(t+h) & =mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})).
-\end{align}
-
-\end_inset
-
-Or reduced
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{align}
-x^{i}+\rho^{i}(\xset,\phi,J_{\perp}) & =q^{i}(t)+\dot{q}^{i}((q^{i}(t)+x^{i}+\rho^{i}(\xset,\phi,J_{\perp}))/2,(p_{j}(t)+mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})))/2)\label{eq:qdot-1-1}\\
-mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})) & =p_{j}(t)+\dot{p}_{j}((q^{i}(t)+x^{i}+\rho^{i}(\xset,\phi,J_{\perp}))/2,(p_{j}(t)+mv_{\parallel}h_{j}(\xset)+A_{j}(\xset+\vrho(\xset,\phi,J_{\perp})))/2)\label{eq:pdot-1-1}
-\end{align}
-
-\end_inset
-
-Solve these 6 equations in 
-\begin_inset Formula $(\xset,v_{\parallel},\phi,J_{\perp})$
-\end_inset
-
- implicitly in every time-step.
-\begin_inset Formula 
-\begin{align*}
-H & =\frac{(p_{j}-\frac{e}{c}A_{j}(\qset))\delta^{jk}(p_{k}-\frac{e}{c}A_{k}(\qset))}{2m}\\
-\d H & =\frac{p_{k}-\frac{e}{c}A_{k}(\qset)}{m}\delta^{ik}\d p_{i}
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\frac{\partial}{\partial x^{i}}(A_{j}\delta^{jk}A_{k})=2\frac{\partial A_{j}}{\partial x^{i}}\delta^{jk}A_{k}
-\]
 
 \end_inset
 

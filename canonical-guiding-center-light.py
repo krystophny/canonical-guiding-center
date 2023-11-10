@@ -11,7 +11,7 @@ def h(x):
 def omc(x):
     return qe * Bmod(x) / (m * c)  # Cyclotron frequency
 
-# z = (X1, X2, X3, vpar, phi, vperp)
+# z = (X1, X2, X3, vpar, phi, Jperp)
 
 def rhovec(z):
     return np.sin(z[4]) * e1(z[0:3]) - np.cos(z[4]) * e2(z[0:3])
@@ -19,17 +19,23 @@ def rhovec(z):
 def rholen(z):
     return z[5] / omc(z[0:3])
 
+def rho(z):
+    return rholen(z) * rhovec(z)
+
 def vperpvec(z):
     return np.cos(z[4]) * e1(z[0:3]) + np.sin(z[4]) * e2(z[0:3])
 
-def rho(z):
-    return rholen(z) * rhovec(z)
+def vperplen(z):
+    return z[5]
+
+def vperp(z):
+    return vperplen(z)*vperpvec(z)
 
 def q(z):
     return z[0:3] + rho(z)
 
 def p(z):
-    return m * z[3] * h(z[0:3]) + m * z[5] * vperpvec(z) + qe / c * A(q(z))
+    return m * z[3] * h(z[0:3]) + m * vperp(z) + qe / c * A(q(z))
 
 def H(q, p):
     return 0.5 * np.dot(p - qe / c * A(q), p - qe / c * A(q)) / m
@@ -40,12 +46,14 @@ def dHdq(q, p):
 def dHdp(q, p):
     return (p - qe / c * A(q)) / m
 
-z0 = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 1.0])
-q0 = q(z0)
-p0 = p(z0)
+nt = 1000
+zs = np.zeros((nt, 6))
+zs[0, :] = np.array([0.2, -0.1, 0.8, -0.01, 0.0, 0.1])
+q0 = q(zs[0, :])
+p0 = p(zs[0, :])
 
-tau = 2*np.pi/omc(z0[0:3])
-dt = 1.234567 * tau
+tau = 2*np.pi/omc(zs[0,0:3])
+dt = 1.234567e-2 * tau
 
 # Midpoint rule in particle coordinates including implicit
 # guiding-center transformation
@@ -70,15 +78,10 @@ def Fcan(zcan, zold):
     Fcan[3:6] = pnew - (pold - dt * dHdq(qmid, pmid))
     return Fcan
 
-nt = 1000
-zs = np.zeros((nt, 6))
-
 qs = np.zeros((nt, 3))
 ps = np.zeros((nt, 3))
 qs_euler = np.zeros((nt, 3))
 ps_euler = np.zeros((nt, 3))
-
-zs[0, :] = np.array([0.2, -0.1, 0.8, 0.0, 0.0, 0.2])
 
 qs[0, :] = q(zs[0, :])
 ps[0, :] = p(zs[0, :])
@@ -133,7 +136,7 @@ plt.ylim(-1, 1)
 plt.legend()
 plt.show()
 
-tnorm = 2*np.pi*np.linspace(0.0,nt*dt,nt)/omc(z0[0:3])
+tnorm = 2*np.pi*np.linspace(0.0,nt*dt,nt)/omc(zs[0,0:3])
 plt.plot(tnorm, zs[:,4],'.-')
 plt.xlabel('t/(omc/2*pi)')
 plt.show()
