@@ -168,7 +168,7 @@ for kt in range(1, nt):
     # Guess for midpoint
     zguess[:] = zold
     zguess[:3] += 0.5 * dt * zold[3]*h(zold[0:3])
-    zguess[4] += 0.5 * dt * 2.0 * np.pi / omc(zold[0:3])
+    zguess[4] += 0.5 * dt * omc(zold[0:3])
 
     sol = root(lambda z: F(z, qold, pold), zguess, tol=1e-13)
     zmid = sol.x
@@ -181,7 +181,7 @@ for kt in range(1, nt):
 
     zguess[:] = zmid
     zguess[:3] += 0.5 * dt * zmid[3]*h(zmid[0:3])
-    zguess[4] += 0.5 * dt * 2.0 * np.pi / omc(zmid[0:3])
+    zguess[4] += 0.5 * dt * omc(zmid[0:3])
 
     znew = z(qnew, pnew, zguess)
 
@@ -226,5 +226,6 @@ plt.plot(tnorm,[H(zs_euler[kt,:]) for kt in range(nt)])
 plt.ylim(0,0.02)
 plt.show()
 
+plt.plot(tnorm,zs[:,5],'.-')
 
 # %%

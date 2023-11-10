@@ -101,7 +101,8 @@ for kt in range(1, nt):
     pold = p(zold)
 
     zguess[:] = zold
-    zguess[4] += dt * 2.0 * np.pi / omc(zold[0:3])
+    zguess[:3] += dt * zold[3]*h(zold[0:3])
+    zguess[4] += dt * omc(zold[0:3])
 
     sol = root(lambda z: F(z, qold, pold), zguess, tol=1e-13)
 
