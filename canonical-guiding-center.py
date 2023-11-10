@@ -3,8 +3,8 @@ import numpy as np
 from scipy.optimize import root
 import matplotlib.pyplot as plt
 
-from field_uniform import *
-#from field_bottle import *
+#from field_uniform import *
+from field_bottle import *
 
 def h(x):
     return B(x) / Bmod(x)
