@@ -118,19 +118,19 @@ for kt in range(1, nt):
 ## Plot
 import matplotlib.pyplot as plt
 
-plt.plot(zs[:, 0], zs[:, 1], 'b.', label="Guiding center (SIMPLE)")
-plt.plot(qs[:, 0], qs[:, 1], 'g.', label="Particle (SIMPLE)")
-plt.plot(qs_euler[:, 0], qs_euler[:, 1], 'r.', label="Particle (Euler)")
+plt.plot(qs_euler[:, 0], qs_euler[:, 1], 'r,', label="Particle (Euler)")
+plt.plot(qs[:, 0], qs[:, 1], 'g,', label="Particle (SIMPLE)")
+plt.plot(zs[:, 0], zs[:, 1], 'b,', label="Guiding-Center (SIMPLE)")
 plt.plot(zs_can[:, 0], zs_can[:, 1], 'm.', label="Particle (Naive midpoint)")
 plt.xlim(-1, 1)
 plt.ylim(-1, 1)
 plt.legend()
 plt.show()
 
-plt.plot(np.sqrt(zs[:, 0]**2 + zs[:, 1]**2), zs[:,2], 'b.', label="Guiding center (SIMPLE)")
-plt.plot(np.sqrt(qs[:, 0]**2 + qs[:, 1]**2), qs[:,2], 'g.', label="Particle (SIMPLE)")
-plt.plot(np.sqrt(qs_euler[:, 0]**2 + qs_euler[:, 1]**2), qs_euler[:,2], 'r.', label="Particle (Euler)")
-plt.plot(np.sqrt(zs_can[:, 0]**2 + zs_can[:, 1]**2), zs_can[:,2], 'm.', label="Particle (Naive midpoint)")
+plt.plot(np.sqrt(qs_euler[:, 0]**2 + qs_euler[:, 1]**2), qs_euler[:,2], 'r,', label="Particle (Euler)")
+plt.plot(np.sqrt(qs[:, 0]**2 + qs[:, 1]**2), qs[:,2], 'g,', label="Particle (SIMPLE)")
+plt.plot(np.sqrt(zs[:, 0]**2 + zs[:, 1]**2), qs[:,2], 'b,', label="Guiding-Center (SIMPLE)")
+plt.plot(np.sqrt(zs_can[:, 0]**2 + zs_can[:, 1]**2), zs_can[:,2], 'm,', label="Particle (Naive midpoint)")
 plt.xlim(-1, 1)
 plt.ylim(-1, 1)
 plt.legend()

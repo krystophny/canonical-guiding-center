@@ -101,8 +101,8 @@ def dzcan(z):
 def dz(z):
     return np.linalg.inv(dzcan(z))
 
-def H(q, p):
-    return 0.5 * np.dot(p - qe / c * A(q), p - qe / c * A(q)) / m
+def H(z):
+    return 0.5 * m * (z[3]**2 + z[5]**2)
 
 def dH(z):
     dH = np.zeros(6)
@@ -143,8 +143,8 @@ z0 = np.array([0.2, -0.1, 0.8, -0.01, 0.0, 0.1])
 zs[0, :] = z0
 zs_euler[0, :] = z0
 
-tau = 2*np.pi/omc(zs_euler[0,0:3])
-dt = 1.234567*1e-2 * tau
+tau = 2*np.pi/omc(z0[:3])
+dt = 1.234567e-2 * tau
 
 qs = np.zeros((nt, 3))
 ps = np.zeros((nt, 3))
@@ -167,7 +167,7 @@ for kt in range(1, nt):
 
     # Guess for midpoint
     zguess[:] = zold
-    #zguess[:3] += 0.5 * dt * zold[3]*h(zold[0:3])
+    zguess[:3] += 0.5 * dt * zold[3]*h(zold[0:3])
     zguess[4] += 0.5 * dt * 2.0 * np.pi / omc(zold[0:3])
 
     sol = root(lambda z: F(z, qold, pold), zguess, tol=1e-13)
@@ -180,7 +180,7 @@ for kt in range(1, nt):
     pnew = pold - dt * np.dot(dzval[:3,:], dHval)
 
     zguess[:] = zmid
-    #zguess[:3] += 0.5 * dt * zmid[3]*h(zmid[0:3])
+    zguess[:3] += 0.5 * dt * zmid[3]*h(zmid[0:3])
     zguess[4] += 0.5 * dt * 2.0 * np.pi / omc(zmid[0:3])
 
     znew = z(qnew, pnew, zguess)
@@ -201,7 +201,6 @@ for kt in range(1, nt):
 ## Plot
 
 plt.plot(qs_euler[:, 0], qs_euler[:, 1], 'r,', label="Particle (Euler)")
-plt.plot(zs_euler[:, 0], zs_euler[:, 1], 'b,', label="Guiding-Center (Euler)")
 plt.plot(qs[:, 0], qs[:, 1], 'g,', label="Particle (SIMPLE)")
 plt.plot(zs[:, 0], zs[:, 1], 'b,', label="Guiding-Center (SIMPLE)")
 plt.xlim(-1, 1)
@@ -210,7 +209,6 @@ plt.legend()
 plt.show()
 
 plt.plot(np.sqrt(qs_euler[:, 0]**2 + qs_euler[:, 1]**2), qs_euler[:,2], 'r,', label="Particle (Euler)")
-plt.plot(np.sqrt(zs_euler[:, 0]**2 + zs_euler[:, 1]**2), qs_euler[:,2], 'b,', label="Guiding-Center (Euler)")
 plt.plot(np.sqrt(qs[:, 0]**2 + qs[:, 1]**2), qs[:,2], 'g,', label="Particle (SIMPLE)")
 plt.plot(np.sqrt(zs[:, 0]**2 + zs[:, 1]**2), qs[:,2], 'b,', label="Guiding-Center (SIMPLE)")
 plt.xlim(-1, 1)
@@ -223,9 +221,10 @@ plt.plot(tnorm, zs[:,4],'.-')
 plt.xlabel('t/(omc/2*pi)')
 plt.show()
 
-plt.plot(tnorm,[H(qs[kt,:], ps[kt,:]) for kt in range(nt)])
+plt.plot(tnorm,[H(zs[kt,:]) for kt in range(nt)])
+plt.plot(tnorm,[H(zs_euler[kt,:]) for kt in range(nt)])
+plt.ylim(0,0.02)
 plt.show()
 
-plt.plot(tnorm,zs[:,5],'.')
 
 # %%
