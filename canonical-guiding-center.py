@@ -144,7 +144,7 @@ zs[0, :] = z0
 zs_euler[0, :] = z0
 
 tau = 2*np.pi/omc(z0[:3])
-dt = 1.234567e-2 * tau
+dt = 1.234567e-1 * tau
 
 qs = np.zeros((nt, 3))
 ps = np.zeros((nt, 3))

@@ -287,5 +287,30 @@ We have
 
 \end_layout
 
+\begin_layout Section*
+Keeping guiding-centers
+\end_layout
+
+\begin_layout Standard
+We want a coordinate frame where 
+\begin_inset Formula $A_{3}=\v A\cdot\v e_{3}=0$
+\end_inset
+
+ and 
+\begin_inset Formula $h_{3}=\v h\cdot\v e_{3}=0$
+\end_inset
+
+.
+ One way to do this is to set
+\begin_inset Formula 
+\begin{equation}
+\v e_{3}=\v A\times\v h.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

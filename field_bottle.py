@@ -7,22 +7,14 @@ qe = 1.0
 c = 1.0
 
 # Functions
-def Bmod(x):
-    return B0 * (1.0 + x[2]**2)
-
-def dBmod(x):
-    dBmod = np.zeros(3)
-    dBmod[2] = 2.0 * B0 * x[2]
-    return dBmod
-
 def A(x):
-    return Bmod(x)*np.array([-0.5 * x[1], 0.5 * x[0], 0])
+    return B0 * (1.0 + x[2]**2)*np.array([-0.5 * x[1], 0.5 * x[0], 0])
 
 def dA(x):
     dA = np.zeros((3, 3))
+    dA[0, 1] = 0.5 * (1.0 + x[2]**2)
     dA[1, 0] = -0.5 * (1.0 + x[2]**2)
     dA[2, 0] = -x[1] * x[2]
-    dA[0, 1] = 0.5 * (1.0 + x[2]**2)
     dA[2, 1] = x[0] * x[2]
     return dA*B0
 
@@ -32,11 +24,22 @@ def B(x):
 def dB(x):
     dB = np.zeros((3, 3))
     dB[0, 0] = -x[2]
-    dB[2, 0] = -x[0]
     dB[1, 1] = -x[2]
+    dB[2, 0] = -x[0]
     dB[2, 1] = -x[1]
     dB[2, 2] = 2*x[2]
     return dB*B0
+
+def Bmod(x):
+    return B0 * np.sqrt(x[0]**2*x[2]**2 + x[1]**2*x[2]**2 + (1 + x[2]**2)**2)
+
+def dBmod(x):
+    Bmodval = Bmod(x)
+    return B0 * np.array([
+        x[0]**2 * x[2]**2 / Bmodval,
+        x[1]**2 * x[2]**2 / Bmodval,
+        x[2] * (x[0]**2 + x[1]**2 + 2.0*x[2]**2 + 2.0) / Bmodval
+    ])
 
 def e1(x):
     e1 = np.array([0.0, 1.0+x[2]**2, x[1]*x[2]])
