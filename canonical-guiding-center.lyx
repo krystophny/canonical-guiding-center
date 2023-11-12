@@ -1,0 +1,614 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\tht}{\vartheta}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\ph}{\varphi}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\balpha}{\boldsymbol{\alpha}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\btheta}{\boldsymbol{\theta}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\bJ}{\boldsymbol{J}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\bGamma}{\boldsymbol{\Gamma}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\bOmega}{\boldsymbol{\Omega}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\d}{\text{d}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\t}[1]{\text{#1}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\m}{\text{m}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\v}[1]{\boldsymbol{#1}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\u}[1]{\underline{#1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\t}[1]{\mathbf{#1}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\bA}{\boldsymbol{A}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\bB}{\boldsymbol{B}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\c}{\mathrm{c}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\difp}[2]{\frac{\partial#1}{\partial#2}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\xset}{{\bf x}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\zset}{{\bf z}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\qset}{{\bf q}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\pset}{{\bf p}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\wset}{{\bf w}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\ei}{{\bf \mathrm{ei}}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\ie}{{\bf \mathrm{ie}}}
+\end_inset
+
+
+\begin_inset FormulaMacro
+\newcommand{\vrho}{\boldsymbol{\rho}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Canonical coordinates for guiding-center orbits
+\end_layout
+
+\begin_layout Section*
+Basics
+\end_layout
+
+\begin_layout Standard
+If we know an implicit transformation 
+\begin_inset Formula $\zset=\zset(\qset,\pset)$
+\end_inset
+
+ of any coordinates 
+\begin_inset Formula $\zset$
+\end_inset
+
+ to canonical coordinates 
+\begin_inset Formula $(\qset,\pset)$
+\end_inset
+
+, we can solve this relation together with any symplectic numerical time-steppin
+g schemer for canonical Hamiltonian equations of motion
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\frac{\d q^{i}(t)}{\d t} & =\frac{\partial H(\qset(t),\pset(t))}{\partial p_{i}}=\frac{\partial z^{\alpha}(\qset(t),\pset(t))}{\partial p_{i}}\frac{\partial H(\zset(t))}{\partial z^{\alpha}},\label{eq:qdot}\\
+\frac{\d p_{j}(t)}{\d t} & =-\frac{\partial H(\qset(t),\pset(t))}{\partial q^{j}}=-\frac{\partial z^{\alpha}(\qset(t),\pset(t))}{\partial q_{j}}\frac{\partial H(\zset(t))}{\partial z^{\alpha}}.\label{eq:pdot}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Close-to-canonical coordinates in low-beta MHD equilibria
+\end_layout
+
+\begin_layout Standard
+In this approach, we start from guiding-center variables and keep the gyrophase
+ out of the transformation to canonical coordinates.
+ We transform spatial guiding-center coordinates similarly to the original
+ SIMPLE approach of canonicalized flux coordinates.
+ Here we want to build the method on general coordinates.
+\end_layout
+
+\begin_layout Subsection*
+SIMPLE approach
+\end_layout
+
+\begin_layout Standard
+In flux coordinates, we have a coordinate system where magnetic field lines
+ lie on radial coordinate planes 
+\begin_inset Formula $r=\mathrm{const.}$
+\end_inset
+
+ parameterized by two angle coordinates 
+\begin_inset Formula $\vartheta,\varphi$
+\end_inset
+
+.
+ Using the safety factor 
+\begin_inset Formula $q$
+\end_inset
+
+ we can modify one of the angles to 
+\begin_inset Formula $\varphi_{0}=\varphi-q\vartheta$
+\end_inset
+
+ such that two coordinate planes 
+\begin_inset Formula $\nabla r$
+\end_inset
+
+ and 
+\begin_inset Formula $\nabla\varphi_{0}$
+\end_inset
+
+ are orthogonal to 
+\begin_inset Formula $\v B$
+\end_inset
+
+ and we obtain the Clebsch representation
+\begin_inset Formula 
+\[
+\v B=\nabla\psi\times\nabla\varphi_{0}
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula $\psi=\psi(r)$
+\end_inset
+
+ as the (ribbon) poloidal flux as a radial coordinate.
+ Accordingly, contravariant components 
+\begin_inset Formula $h^{\psi}$
+\end_inset
+
+ and also 
+\begin_inset Formula $h^{\varphi_{0}}$
+\end_inset
+
+ vanish identically.
+ As said, this picture is centered around the alignment to 
+\begin_inset Formula $\v B$
+\end_inset
+
+ as a vector field with contravariant (density) components being equivalent
+ to the 2-form representation.
+ This has to be revisited for the symplectic part of the guiding-center
+ Lagrangian.
+\end_layout
+
+\begin_layout Standard
+In any coordinates, we have
+\begin_inset Formula 
+\begin{align}
+L_{gc} & =(mv_{\parallel}h_{1}(\v x)+\frac{e}{c}A_{1}(\v x))\dot{x}^{1}\nonumber \\
+ & +(mv_{\parallel}h_{2}(\v x)+\frac{e}{c}A_{2}(\v x))\dot{x}^{2}+(mv_{\parallel}h_{3}(\v x)+\frac{e}{c}A_{3}(\v x))\dot{x}^{3}+J_{\perp}\dot{\phi}-H.
+\end{align}
+
+\end_inset
+
+We want the first line of the right-hand-side to vanish identically.
+ This means that everywhere
+\begin_inset Formula 
+\begin{equation}
+(mv_{\parallel}\v h(\v x)+\frac{e}{c}\v A(\v x))\cdot\v e_{1}(\v x)\overset{!}{=}0.
+\end{equation}
+
+\end_inset
+
+We limit ourselves to the case where this is the case independently from
+ 
+\begin_inset Formula $v_{\parallel}$
+\end_inset
+
+, so we require both,
+\begin_inset Formula 
+\begin{align}
+B_{1}=\v B(\v x)\cdot\v e_{1}(\v x) & \overset{!}{=}0,\label{eq:ortho}\\
+A_{1}=\v A(\v x)\cdot\v e_{1}(\v x) & \overset{!}{=}0.\label{eq:ortho2}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Generalization
+\end_layout
+
+\begin_layout Standard
+Elimination of 
+\begin_inset Formula $B_{1}$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ortho"
+
+\end_inset
+
+ requires an actual coordinate transform wherreas
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ortho2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ can possibly be fulfilled via a subsequent gauge transform of 
+\begin_inset Formula $\v A$
+\end_inset
+
+.
+ What does 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ortho"
+
+\end_inset
+
+ mean geometrically? Let us consider the vacuum field case.
+ Then 
+\begin_inset Formula $\v B=\nabla\chi=\v e^{\chi}$
+\end_inset
+
+ can be considered as the reciprocal basis vector field of the coordinate
+ 
+\begin_inset Formula $\chi$
+\end_inset
+
+ being the magnetic scalar potential.
+ If 
+\begin_inset Formula $\chi$
+\end_inset
+
+ is used as a coordinate besides 
+\begin_inset Formula $x^{1}$
+\end_inset
+
+, then
+\begin_inset Formula 
+\begin{equation}
+B_{1}=\v e^{\chi}\cdot\v e_{1}=\delta_{1}^{\chi}=0.
+\end{equation}
+
+\end_inset
+
+More generally, under MHD equilibrium conditions 
+\begin_inset Formula 
+\begin{equation}
+\nabla p=\v J\times\v B
+\end{equation}
+
+\end_inset
+
+and with Clebsch representation of the current,
+\begin_inset Formula 
+\begin{equation}
+\frac{4\pi}{c}\v J=\nabla\lambda\times\nabla x^{1}
+\end{equation}
+
+\end_inset
+
+we have the covariant Boozer-Grad representation
+\begin_inset Formula 
+\begin{equation}
+\v B=\lambda\nabla x^{1}+\nabla\chi.
+\end{equation}
+
+\end_inset
+
+Here, 
+\begin_inset Formula $\nabla x^{1}$
+\end_inset
+
+ is the coordinate plane of constant 
+\begin_inset Formula $p(x^{1})$
+\end_inset
+
+ that is orthogonal to both, 
+\begin_inset Formula $\v J$
+\end_inset
+
+, and 
+\begin_inset Formula $\v B$
+\end_inset
+
+.
+ We see that 
+\begin_inset Formula $B_{1}=\lambda+\nabla\chi\cdot\v e_{1}$
+\end_inset
+
+.
+ This also means that if 
+\begin_inset Formula $\chi$
+\end_inset
+
+ is used as a coordinate, then 
+\begin_inset Formula $B_{1}=\lambda$
+\end_inset
+
+.
+ This means it remains small for small current densities.
+ The idea now is to use coordinates aligned to the vacuum magnetic field
+ via its scalar potential to obtain approximately valid canonical momenta
+ in the tradition of Allen Boozer and Roscoe White that derived and applied
+ this feature in flux coordinates.
+\end_layout
+
+\begin_layout Section*
+Example fields
+\end_layout
+
+\begin_layout Subsection*
+Uniform
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\chi & =z,\\
+\v A & =-\frac{y}{2}\v e^{x}+\frac{x}{2}\v e^{y}\\
+\v B & =\v e_{z}.\\
+\nonumber \\
+x^{1}=x,\quad x^{2} & =y,\quad x^{3}=z.\\
+\nonumber \\
+B^{1}=0,\quad B^{2} & =0,\quad B^{3}=1,\\
+B_{1}=0,\quad B_{2} & =0,\quad B_{3}=1.
+\end{align}
+
+\end_inset
+
+The condition 
+\begin_inset Formula $A_{x}=0$
+\end_inset
+
+ can be found by gauging
+\begin_inset Formula 
+\begin{equation}
+\v A\rightarrow\v A+\nabla\left(\frac{xy}{2}\right)=x\v e^{y}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Magnetic bottle 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\v A & =B^{z}(z)\left(-\frac{y}{2}\v e^{x}+\frac{x}{2}\v e^{y}\right)\\
+\v B & =-\frac{1}{2}xB^{z\prime}(z)\v e_{x}-\frac{1}{2}yB^{z\prime}(z)\v e_{y}+B^{z}(z)\v e_{z}.
+\end{align}
+
+\end_inset
+
+This field is not a vacuum field.
+\end_layout
+
+\begin_layout Subsection*
+Wire in z direction (= tokamak TF coils without ripple)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\chi & =\frac{I_{z}}{2c}\varphi,\\
+\v A & =-\frac{I_{z}}{2c}\ln R\,\v e^{Z},\\
+\v B & =\frac{I_{z}}{2c}\v e^{\varphi}=\frac{I_{z}}{2cR}\v e_{(\varphi)}=\frac{I_{z}}{2cR^{2}}\v e_{\varphi}.
+\end{align}
+
+\end_inset
+
+This is already in the correct form with 
+\begin_inset Formula $A_{1}=0$
+\end_inset
+
+ and 
+\begin_inset Formula $B_{1}=0$
+\end_inset
+
+ for 
+\begin_inset Formula $x^{1}=R,x^{2}=\varphi$
+\end_inset
+
+ or 
+\begin_inset Formula $\chi$
+\end_inset
+
+, 
+\begin_inset Formula $x^{3}=Z$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+General solution
+\end_layout
+
+\begin_layout Enumerate
+Compute vacuum field from coils via Biot-Savart.
+\end_layout
+
+\begin_layout Enumerate
+Solve Laplace equation in 
+\begin_inset Formula $\chi$
+\end_inset
+
+ on that field.
+\end_layout
+
+\begin_layout Enumerate
+Construct coordinates that are nowhere parallel to 
+\begin_inset Formula $\nabla\chi$
+\end_inset
+
+.
+ In toroidal magnetic confinement devices, those can be cylinder 
+\begin_inset Formula $R$
+\end_inset
+
+ and 
+\begin_inset Formula $Z$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_body
+\end_document
