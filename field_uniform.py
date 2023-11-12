@@ -14,12 +14,11 @@ def dBmod(x):
     return 0.0
 
 def A(x):
-    return B0*np.array([-0.5 * x[1], 0.5 * x[0], 0])
+    return B0*np.array([0.0, x[0], 0.0])
 
 def dA(x):
     dA = np.zeros((3, 3))
-    dA[0, 1] = 0.5*B0
-    dA[1, 0] = -0.5*B0
+    dA[0, 1] = B0
     return dA
 
 def B(x):
