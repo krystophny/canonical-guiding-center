@@ -219,11 +219,38 @@ Canonical coordinates for guiding-center orbits
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Section
+Particle canonical coordinates
+\end_layout
+
+\begin_layout Standard
+This approach has been tested and yielded problems due to the oscillating
+ phase that is back in the particle coordinates where the symplectic scheme
+ is implemented.
+ It is not clear yet, whether this can be resolved.
+\end_layout
+
+\begin_layout Standard
 Particle canonical coordinates in terms of guiding-center coordinates 
 \begin_inset Formula $\zset=(\xset,v_{\parallel},\phi,J_{\perp})$
 \end_inset
 
- is
+ with vector potential 
+\begin_inset Formula $\v A,$
+\end_inset
+
+magnetic field 
+\begin_inset Formula $\v B,$
+\end_inset
+
+unit vector 
+\begin_inset Formula $\v h=\v B/B$
+\end_inset
+
+are
 \begin_inset Formula 
 \begin{align}
 q^{i}(\zset) & =x^{i}+\rho^{i}(\xset,\phi,J_{\perp}),\\
@@ -285,6 +312,15 @@ We have
 \end_inset
 
 
+\begin_inset Formula 
+\begin{align*}
+\mu B & =\omega_{c}J_{\perp}=\frac{mv_{\perp}^{\,2}}{2}\\
+v_{\perp} & =\sqrt{\frac{2J_{\perp}\omega_{c}(\xset)}{m}}
+\end{align*}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -292,12 +328,20 @@ Keeping guiding-centers
 \end_layout
 
 \begin_layout Standard
+In this approach, we start from guiding-center variables and keep the gyrophase
+ out of the transformation to canonical coordinates.
+ We transform spatial guiding-center coordinates similarly to the original
+ SIMPLE approach of canonicalized flux coordinates.
+ Here we want to build the method on general coordinates.
+\end_layout
+
+\begin_layout Standard
 We want a coordinate frame where 
-\begin_inset Formula $A_{3}=\v A\cdot\v e_{3}=0$
+\begin_inset Formula $A_{1}=\v A\cdot\v e_{1}=0$
 \end_inset
 
  and 
-\begin_inset Formula $h_{3}=\v h\cdot\v e_{3}=0$
+\begin_inset Formula $h_{1}=\v h\cdot\v e_{3}=0$
 \end_inset
 
 .
@@ -310,6 +354,279 @@ We want a coordinate frame where
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Example:
+\begin_inset Formula 
+\begin{align*}
+\v A & =-\frac{y}{2}\v e_{x}+\frac{x}{2}\v e_{y}\\
+\v B & =\v e_{z}\\
+\v e_{1} & =-\frac{x}{\sqrt{x^{2}+y^{2}}}\v e_{x}-\frac{x}{\sqrt{x^{2}+y^{2}}}\v e_{y}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Can one in general produce a valid coordinate system in this manner?
+\end_layout
+
+\begin_layout Subsection*
+SIMPLE approach
+\end_layout
+
+\begin_layout Standard
+In flux coordinates, we have a coordinate system where magnetic field lines
+ lie on radial coordinate planes 
+\begin_inset Formula $r=\mathrm{const.}$
+\end_inset
+
+ parameterized by two angle coordinates 
+\begin_inset Formula $\vartheta,\varphi$
+\end_inset
+
+.
+ Using the safety factor 
+\begin_inset Formula $q$
+\end_inset
+
+ we can modify one of the angles to 
+\begin_inset Formula $\varphi_{0}=\varphi-q\vartheta$
+\end_inset
+
+ such that two coordinate planes 
+\begin_inset Formula $\nabla r$
+\end_inset
+
+ and 
+\begin_inset Formula $\nabla\varphi_{0}$
+\end_inset
+
+ are orthogonal to 
+\begin_inset Formula $\v B$
+\end_inset
+
+ and we obtain the Clebsch representation
+\begin_inset Formula 
+\[
+\v B=\nabla\psi\times\nabla\varphi_{0}
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula $\psi=\psi(r)$
+\end_inset
+
+ as the (ribbon) poloidal flux as a radial coordinate.
+ Accordingly, contravariant components 
+\begin_inset Formula $h^{\psi}$
+\end_inset
+
+ and also 
+\begin_inset Formula $h^{\varphi_{0}}$
+\end_inset
+
+ vanish identically.
+ As said, this picture is centered around the alignment to 
+\begin_inset Formula $\v B$
+\end_inset
+
+ as a vector field with contravariant (density) components being equivalent
+ to the 2-form representation.
+ This has to be revisited for the symplectic part of the guiding-center
+ Lagrangian.
+\end_layout
+
+\begin_layout Standard
+In any coordinates, we have
+\begin_inset Formula 
+\begin{align}
+L_{gc} & =(mv_{\parallel}h_{1}(\v x)+\frac{e}{c}A_{1}(\v x))\dot{x}^{1}\nonumber \\
+ & +(mv_{\parallel}h_{2}(\v x)+\frac{e}{c}A_{2}(\v x))\dot{x}^{2}+(mv_{\parallel}h_{3}(\v x)+\frac{e}{c}A_{3}(\v x))\dot{x}^{3}+J_{\perp}\dot{\phi}-H.
+\end{align}
+
+\end_inset
+
+We want the first line of the right-hand-side to vanish identically.
+ This means that everywhere
+\begin_inset Formula 
+\begin{equation}
+(mv_{\parallel}\v h(\v x)+\frac{e}{c}\v A(\v x))\cdot\v e_{1}(\v x)\overset{!}{=}0.
+\end{equation}
+
+\end_inset
+
+We limit ourselves to the case where this is the case independently from
+ 
+\begin_inset Formula $v_{\parallel}$
+\end_inset
+
+, so we require both,
+\begin_inset Formula 
+\begin{align}
+B_{1}=\v B(\v x)\cdot\v e_{1}(\v x) & \overset{!}{=}0,\label{eq:ortho}\\
+A_{1}=\v A(\v x)\cdot\v e_{1}(\v x) & \overset{!}{=}0.
+\end{align}
+
+\end_inset
+
+The first relation requires an actual coordinate transform wherreas the
+ second relation can possibly be fulfilled via a subsequent gauge transform
+ of 
+\begin_inset Formula $\v A$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+What does 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ortho"
+
+\end_inset
+
+ mean geometrically? Let us briefly swap the role of field and coordinates
+ and consider the vacuum field case.
+ Then 
+\begin_inset Formula $\v B=\nabla\chi=\v e^{\chi}$
+\end_inset
+
+ can be considered as the reciprocal basis vector field of the coordinate
+ 
+\begin_inset Formula $\chi$
+\end_inset
+
+ being the magnetic scalar potential.
+ If 
+\begin_inset Formula $\chi$
+\end_inset
+
+ is used as a coordinate besides 
+\begin_inset Formula $x^{1}$
+\end_inset
+
+, then
+\begin_inset Formula 
+\begin{equation}
+B_{1}=\v e^{\chi}\cdot\v e_{1}=\delta_{1}^{\chi}=0.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+More generally, under MHD equilibrium conditions 
+\begin_inset Formula 
+\begin{equation}
+\nabla p=\v J\times\v B
+\end{equation}
+
+\end_inset
+
+and with Clebsch representation of the current,
+\begin_inset Formula 
+\begin{equation}
+\frac{4\pi}{c}\v J=\nabla\lambda\times\nabla x^{1}
+\end{equation}
+
+\end_inset
+
+we have the covariant Boozer-Grad representation
+\begin_inset Formula 
+\begin{equation}
+\v B=\lambda\nabla x^{1}+\nabla\chi.
+\end{equation}
+
+\end_inset
+
+Here, 
+\begin_inset Formula $\nabla x^{1}$
+\end_inset
+
+ is the coordinate plane of constant 
+\begin_inset Formula $p(x^{1})$
+\end_inset
+
+ that is orthogonal to both, 
+\begin_inset Formula $\v J$
+\end_inset
+
+, and 
+\begin_inset Formula $\v B$
+\end_inset
+
+.
+ We see that 
+\begin_inset Formula $B_{1}=\lambda+\nabla\chi\cdot\v e_{1}$
+\end_inset
+
+.
+ This also means that if 
+\begin_inset Formula $\chi$
+\end_inset
+
+ is used as a coordinate, then 
+\begin_inset Formula $B_{1}=\lambda$
+\end_inset
+
+.
+ This means it remains small for small current densities.
+\end_layout
+
+\begin_layout Standard
+The idea now is to use coordinates aligned to the vacuum magnetic field
+ via its scalar potential.
+ 
+\end_layout
+
+\begin_layout Standard
+Example of uniform field:
+\begin_inset Formula 
+\begin{align}
+\chi & =z,\\
+\v A & =-\frac{y}{2}\v e^{x}+\frac{x}{2}\v e^{y}\\
+\v B & =\v e_{z}.\\
+\nonumber \\
+x^{1}=x,\quad x^{2} & =y,\quad x^{3}=z.\\
+\nonumber \\
+B^{1}=0,\quad B^{2} & =0,\quad B^{3}=1,\\
+B_{1}=0,\quad B_{2} & =0,\quad B_{3}=1.
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Example of magnetic bottle:
+\begin_inset Formula 
+\begin{align}
+\v A & =(1+z^{2})\left(-\frac{y}{2}\v e^{x}+\frac{x}{2}\v e^{y}\right)\\
+\v B & =.\\
+\nonumber \\
+x^{1}=x,\quad x^{2} & =y,\quad x^{3}=z.\\
+\nonumber \\
+B^{1}=0,\quad B^{2} & =0,\quad B^{3}=1,\\
+B_{1}=0,\quad B_{2} & =0,\quad B_{3}=1.
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Adjoint MHD equilibrium solver
 \end_layout
 
 \end_body
